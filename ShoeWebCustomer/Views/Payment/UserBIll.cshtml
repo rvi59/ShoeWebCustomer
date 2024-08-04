@@ -1,0 +1,123 @@
+﻿@model System.Data.DataTable
+@{
+    ViewBag.Title = "UserBIll";
+}
+<div style="margin-top:5px;">
+    <h3 style="text-align:center">Invoice</h3>
+</div>
+<div class="invoice-box" style="margin-top:40px;">
+
+    
+    <table cellpadding="0" cellspacing="0">
+        <tr>
+            <td colspan="2">
+                <img src="~/Content/Imges/mylogo.PNG" height="80" width="150" />
+            </td>
+            <td style="width:30%; margin-right: 10px;">
+                Order ID : <label>@Model.Rows[0]["OrderId"]</label>
+            </td>
+        </tr>
+        <tr class="information">
+            <td colspan="3">
+                <table>
+                    <tr>
+                        <td colspan="1">
+                            Name :
+                            <label>@Model.Rows[0]["U_FirstName"]</label><br />
+                            Email :
+                            <label>@Model.Rows[0]["U_Email"]</label><br />
+                            Mobile :
+                            <label>@Model.Rows[0]["Mobile"]</label>
+                        </td>
+                        <td>
+                            <b> Shipping Address: </b> <br>
+                            <label>@Model.Rows[0]["Address"]</label>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="3">
+                <table width="100%" border="1">
+                    <tr class="class=" heading"">
+                        <td style="width:10%;">
+                            Sr.No
+                        </td>
+                        <td style="width:30%; text-align:center;">
+                            <b>Product Name</b>
+                        </td>
+                        <td style="width:30%; text-align:center;">
+                            <b>Quantity</b>
+                        </td>
+                        <td style="width:20%; text-align:center;">
+                            <b>Total Price</b>
+                        </td>
+
+                    </tr>
+                    @for (int i = 0; i < Model.Rows.Count; i++)
+                    {
+                        <tr class="item">
+                            <td style="width:25%;">@(i + 1)</td>
+                            <td style="width:25%; text-align:center;">@Model.Rows[i]["Prod_ShortName"]</td>
+                            <td style="width:25%; text-align:center;">@Model.Rows[i]["Prod_Qty"]</td>
+                            <td style="width:25%; text-align:center;">@Model.Rows[i]["TotalProd_Price"]</td>
+                        </tr>
+                    }
+                    <tr class="item">
+                        <td>
+                        </td>
+                        <td></td>
+                        <td style="text-align:center">
+                            <b> Grand Total </b>
+                        </td>
+                        <td style="text-align:center">
+                            <label><b>@Model.Rows[0]["TotalBillPrice"]</b></label>
+                        </td>
+                    </tr>
+                </table>
+
+            </td>
+        </tr>
+
+    </table>
+
+   
+
+</div>
+<br />
+<div class="container" style="width:50%; margin:auto;">
+    <center>
+        <label id="lbldownload" style="font-size:24px;color:forestgreen;"></label>
+    </center>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+        var countdown = 2;
+        var countdownInterval = setInterval(function () {
+            $('#lbldownload').text('Downloading your PDF in ' + countdown + ' seconds');
+            countdown--;
+            if (countdown < 0) {
+                clearInterval(countdownInterval);
+                $('#lbldownload').text('');
+                var element = document.querySelector('.invoice-box');
+                html2pdf(element, {
+                    margin: 1,
+                    filename: 'invoice.pdf',
+                    jsPDF: { unit: 'in', format: 'A4', orientation: 'portrait' },
+                    html2canvas: { scale: 2 }
+                }).then(function () {
+                    // After PDF download
+                    //window.location.href = '../home/index'; // Redirect to the home/index page
+                });
+            }
+        }, 1000);
+    });
+
+
+
+
+</script>

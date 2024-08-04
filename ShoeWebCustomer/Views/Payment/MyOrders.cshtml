@@ -1,0 +1,47 @@
+﻿@model System.Data.DataTable
+@{
+    ViewBag.Title = "MyOrders";
+}
+<div>
+    <p style="text-align:center; font-weight:700;margin-top:50px;"> All Orders</p>
+</div>
+<div class="container">
+
+
+    <table class="table">
+
+        <thead>
+            <tr>
+                <th>
+                    Sr.no
+                </th>
+                <th>
+                    ProductName
+                </th>
+                <th>
+                    Quantity
+                </th>
+                <th style="text-align:center;">
+                    Price
+                </th>
+                <th style="text-align:center;">
+                    Date
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+                @for (int i = 0; i < Model.Rows.Count; i++)
+                {
+                    <tr class="item">
+                        <td style="width:10%; text-align:left">@(i + 1)</td>
+                        <td style="width:40%;">@Model.Rows[i]["Prod_Name"]</td>
+                        <td style="width:5%; text-align:center;">@Model.Rows[i]["Prod_Qty"]</td>
+                        <td style="width:20%; text-align:center;">@Model.Rows[i]["TotalProd_Price"]</td>
+                        <td style="width:25%; text-align:center;">@Model.Rows[i]["Date"]</td>
+                    </tr>
+                }
+        </tbody>
+    </table>
+
+</div>

@@ -1,0 +1,717 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Lemon&display=swap');
+
+body {
+    background-color: #f3f3f3;
+}
+
+.navbar-brand {
+    font-family: 'Lemon', serif;
+}
+
+@media screen and (max-width:750px) {
+    .mySearchbtn {
+        margin-top: 10px !important;
+    }
+}
+
+.carousel-indicators li {
+    background-color: #963aff !important;
+}
+
+
+
+
+.badge--slim {
+    font-weight: 400;
+}
+
+.cont-box {
+    max-width: 1200px;
+}
+
+.label-top {
+    position: absolute;
+    background-color: var(--label-index);
+    color: #fff;
+    top: 8px;
+    right: 8px;
+    padding: 5px 10px 5px 10px;
+    font-size: .7rem;
+    font-weight: 600;
+    border-radius: 3px;
+    text-transform: uppercase;
+}
+
+
+.card {
+    background: #fff;
+    box-shadow: none;
+    transition: none;
+    border: 0;
+    box-shadow: 0px -25px 20px -20px rgba(0, 0, 0, 0.45), 0px 25px 20px -20px rgba(0, 0, 0, 0.45);
+    border-radius: 0;
+}
+
+    .card h3 {
+        overflow: hidden;
+        font-weight: 500;
+        font-size: 1rem;
+    }
+
+        .card h3 a {
+            color: #1a1a1a;
+        }
+
+            .card h3 a:hover {
+                color: #616161;
+            }
+
+.card-img-top {
+    width: 100%;
+    min-height: 250px;
+    max-height: 250px;
+    object-fit: contain;
+    padding: 30px;
+}
+
+    .card-img-top:hover {
+        transform: rotate(-20deg) scale(1, 1);
+    }
+
+
+.card-body {
+    background: #9dd9e3;
+}
+
+/*Login/Registration*/
+
+
+/*Signup*/
+.myrow {
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 10px;
+    width: 80%;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.navbar {
+    padding: 0 !important;
+}
+
+.lbl {
+    font-weight: bold;
+    color: #2D2D2D;
+    font-family: 'Lato', sans-serif;
+}
+
+.leftside {
+    background: #CFD6E5;
+    background: -webkit-linear-gradient(to top, #CFD6E5 0%, #E6ECF3 500%);
+    background: -moz-linear-gradient(to top, #CFD6E5 0%, #E6ECF3 50%);
+    background: linear-gradient(to top, #CFD6E5 0%, #E6ECF3 50%);
+}
+
+#signbtn {
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-family: 'Lato', sans-serif;
+    border-radius: 20px;
+    background-color: #F95E77;
+    color: #fff;
+    font-size: 20px;
+}
+
+    #signbtn:hover {
+        text-decoration: none;
+        color: #fff;
+        background-color: #Ea2143;
+        font-size: 21px;
+        transition: all .2s ease-in-out;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+.regRespo0 {
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.regRespo1 {
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+}
+
+@media screen and (min-width:770px) and (max-width:990px) {
+    .regRespo0 {
+        width: 100%;
+        text-align: center;
+    }
+
+    .regRespo1 {
+        width: 100%;
+        margin-top: 35px;
+        text-align: center;
+    }
+
+}
+
+
+
+@media screen and (min-width:400px) and (max-width:560px) {
+
+   
+    .regRespo0 {
+        width: 100%;
+        text-align: center;
+    }
+
+    .regRespo1 {
+        width: 100%;
+        margin-top: 35px;
+        text-align: center;
+    }
+
+
+}
+
+
+
+@media screen and (min-width:350px) and (max-width:399px) {
+   
+    .regRespo0 {
+        width: 100%;
+        text-align: center;
+    }
+
+    .regRespo1 {
+        width: 100%;
+        margin-top: 35px;
+        text-align: center;
+    }
+
+
+}
+
+
+
+@media screen and (min-width:300px) and (max-width:349px) {
+
+
+
+    .regRespo0 {
+        width: 100%;
+        text-align: center;
+    }
+
+    .regRespo1 {
+        width: 100%;
+        margin-top: 35px;
+        text-align: center;
+    }
+
+   
+}
+
+
+
+
+@media screen and (max-width:447px) {
+    #myRegis {
+        font-size: 1.6em;
+    }
+}
+
+
+.logbtn {
+    color: #F95E77;
+    text-align: center;
+    margin-top: -10px;
+    font-family: 'Lato', sans-serif;
+    text-decoration: none;
+}
+
+
+    .logbtn:hover {
+        font-size: 18px;
+        color: #F95E77;
+        transition: all .2s ease-in-out;
+        text-decoration: none;
+    }
+
+
+
+/*Login*/
+
+.img1 {
+    margin-left: 50px;
+}
+
+.leftside {
+    background: #CFD6E5;
+    background: -webkit-linear-gradient(to top, #CFD6E5 0%, #E6ECF3 500%);
+    background: -moz-linear-gradient(to top, #CFD6E5 0%, #E6ECF3 50%);
+    background: linear-gradient(to top, #CFD6E5 0%, #E6ECF3 50%);
+}
+
+.Loginbtn {
+    padding-top: 4px;
+    padding-bottom: 8px;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-family: 'Lato', sans-serif;
+    border-radius: 20px;
+    border: none;
+    background-color: #F95E77;
+    color: #fff;
+    font-size: 20px;
+}
+
+    .Loginbtn:hover {
+        text-decoration: none;
+        color: #fff;
+        background-color: #Ea2143;
+        font-size: 20px;
+        transition: all .2s ease-in-out;
+        padding-top: 6px;
+        padding-bottom: 8px;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+
+
+
+.logRespo0 {
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.logRespo1 {
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+    padding-bottom:10px;
+}
+
+
+@media screen and (min-width:992px) and (max-width:1199px) {
+
+    .logRespo1 {
+        width: 50%;
+        display: inline-block;
+        float: right;
+    }
+}
+
+
+
+@media screen and (min-width:768px) and (max-width:990px) {
+
+    .logRespo1 {
+        width: 50%;
+        display: inline-block;
+        float: right;
+    }
+
+
+    .logRespo0 {
+        width: 100%;
+        text-align: center;
+    }
+
+    .logRespo1 {
+        width: 100%;
+        margin-top: 35px;
+        text-align: center;
+    }
+
+
+    .Loginbtn {
+        padding-left: 90px;
+        padding-right: 90px;
+    }
+}
+
+
+.chkh3 {
+    margin-top: 20px;
+    margin-left: -30px;
+   
+}
+
+.chktbl {
+    width: 50%;
+    margin: auto;
+}
+
+
+@media screen and (min-width:480px) and (max-width:766px) {
+    html, body {
+        overflow-x: hidden;
+    }
+
+    .myrow {
+        width: 100%;
+    }
+
+    .logRespo1 {
+        width: 50%;
+        display: inline-block;
+        float: right;
+    }
+
+
+    .logRespo0 {
+        width: 100%;
+        text-align: center;
+    }
+
+    .logRespo1 {
+        width: 100%;
+        margin-top: 35px;
+        text-align: center;
+    }
+
+
+    .Loginbtn {
+        padding-left: 140px;
+        padding-right: 140px;
+        width:50%;
+    }
+}
+
+
+
+
+@media screen and (min-width:400px) and (max-width:479px) {
+
+
+    html, body {
+        overflow-x: hidden;
+    }
+
+    .logRespo1 {
+        width: 50%;
+        display: inline-block;
+        float: right;
+    }
+
+    .myrow {
+        width: 100%;
+    }
+
+
+    .logRespo0 {
+        width: 100%;
+        text-align: center;
+    }
+
+    .logRespo1 {
+        width: 100%;
+        margin-top: 35px;
+        text-align: center;
+    }
+
+
+    .Loginbtn {
+        padding-left: 110px;
+        padding-right: 110px;
+        margin-left: -5px;
+        width:50%;
+    }
+
+    .chkh3 {
+        margin-top: 20px;
+        margin-left: -30px;
+        
+        font-size:24px;
+    }
+
+    .chktbl {
+        width: 80%;
+        margin: auto;
+    }
+
+}
+
+
+
+@media screen and (min-width:360px) and (max-width:399px) {
+
+
+    html, body {
+        overflow-x: hidden;
+    }
+
+    .myrow{
+        width:100%;
+    }
+
+    .logRespo1 {
+        width: 50%;
+        display: inline-block;
+        float: right;
+    }
+
+
+    .logRespo0 {
+        width: 100%;
+        text-align: center;
+    }
+
+    .logRespo1 {
+        width: 100%;
+        margin-top: 35px;
+        text-align: center;
+    }
+
+
+    .Loginbtn {
+        padding-left: 90px;
+        padding-right: 90px;
+        margin-left: -10px;
+    }
+
+    .chkh3 {
+        margin-top: 20px;
+        margin-left: -10px;
+     
+        font-size: 24px;
+    }
+
+    .chktbl {
+        width: 100%;
+        margin: auto;
+    }
+}
+
+
+
+
+@media screen and (min-width:300px) and (max-width:359px) {
+
+
+    html, body {
+        overflow-x: hidden;
+    }
+
+    .myrow {
+        width: 100%;
+    }
+
+    .logRespo1 {
+        width: 50%;
+        display: inline-block;
+        float: right;
+    }
+
+
+    .logRespo0 {
+        width: 100%;
+        text-align: center;
+    }
+
+    .logRespo1 {
+        width: 100%;
+        margin-top: 35px;
+        text-align: center;
+    }
+
+
+    .Loginbtn {
+        padding-left: 60px;
+        padding-right: 60px;
+        margin-left: -10px;
+    }
+
+    .chkh3 {
+        margin-top: 20px;
+        margin-left: -10px;
+        font-size: 24px;
+    }
+
+    .chktbl {
+        width: 100%;
+        margin: auto;
+    }
+}
+
+
+@media screen and (max-width:447px) {
+    #myLogHead {
+        font-size: 2em;
+    }
+}
+
+
+.regisbtn {
+    color: #F95E77;
+    text-align: center;
+    margin-top: -10px;
+    font-family: 'Lato', sans-serif;
+    text-decoration: none;
+}
+
+
+    .regisbtn:hover {
+        font-size: 18px;
+        color: #F95E77;
+        transition: all .2s ease-in-out;
+        text-decoration: none;
+    }
+
+
+/*Product details*/
+
+.product-card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0px -25px 20px -20px rgba(0, 0, 0, 0.45), 0px 25px 20px -20px rgba(0, 0, 0, 0.45);
+}
+
+.product-image {
+    flex: 1 1 40%;
+    margin-right: 20px;
+}
+
+    .product-image img {
+        width: 100%;
+        height: auto;
+    }
+
+.product-details {
+    flex: 1 1 55%;
+}
+
+.product-name {
+    font-size: 19px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.product-nameDetails {
+    font-size: 18px;
+    font-weight: normal;
+    
+    
+}
+
+
+.product-description {
+    font-size: 16px;
+    font-weight: normal;
+}
+
+
+
+/*Invoice*/
+.invoice-box {
+    max-width: 890px;
+    margin: auto;
+    padding: 10px;
+    border: 1px solid #eee;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+    font-size: 14px;
+    line-height: 24px;
+    font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+    color: #555;
+}
+
+.invoice-box table {
+    width: 100%;
+    line-height: inherit;
+    text-align: left;
+    border-bottom: solid 1px #ccc;
+}
+
+    .invoice-box table td {
+        padding: 5px;
+        vertical-align: middle;
+    }
+
+    .invoice-box table tr td:nth-child(2) {
+        text-align: right;
+    }
+
+    .invoice-box table tr.top table td {
+        padding-bottom: 20px;
+    }
+
+        .invoice-box table tr.top table td.title {
+            font-size: 45px;
+            line-height: 45px;
+            color: #333;
+        }
+
+    .invoice-box table tr.information table td {
+        padding-bottom: 40px;
+    }
+
+    .invoice-box table tr.heading td {
+        background: #eee;
+        border-bottom: 1px solid #ddd;
+        font-weight: bold;
+        font-size: 12px;
+    }
+
+    .invoice-box table tr.details td {
+        padding-bottom: 20px;
+    }
+
+    .invoice-box table tr.item td {
+        border-bottom: 1px solid #eee;
+    }
+
+    .invoice-box table tr.item.last td {
+        border-bottom: none;
+    }
+
+    .invoice-box table tr.total td:nth-child(2) {
+        border-top: 2px solid #eee;
+        font-weight: bold;
+    }
+
+@media only screen and (max-width: 600px) {
+    .invoice-box table tr.top table td {
+        width: 100%;
+        display: block;
+        text-align: center;
+    }
+
+    .invoice-box table tr.information table td {
+        width: 100%;
+        display: block;
+        text-align: center;
+    }
+}
+/** RTL **/
+.rtl {
+    direction: rtl;
+    font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+}
+
+    .rtl table {
+        text-align: right;
+    }
+
+        .rtl table tr td:nth-child(2) {
+            text-align: left;
+        }
+
+
+
+
+

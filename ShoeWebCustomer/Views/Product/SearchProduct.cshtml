@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "SearchProduct";
+}
+
+@{
+    List<ShoeWebCustomer.Models.Products> SearchListData = null;
+    if (TempData["ProdSearchdata"] != null)
+    {
+        SearchListData = (List<ShoeWebCustomer.Models.Products>)TempData["ProdSearchdata"];
+    }
+}
+
+<div class="text-center bg-light my-4">
+    <label class="font-weight-bolder" style="font-size: 22px; text-transform:uppercase;margin-bottom:0px!important;">
+
+        @if (SearchListData != null && SearchListData.Count > 0)
+        {
+            @:Showing @SearchListData.Count Results
+        }
+        else
+        {
+            @:NO Record Found
+        }
+
+    </label>
+</div>
+
+<div class="container-fluid cont-box bg-trasparent  p-3" style="position: relative">
+
+    <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4">
+
+        @if (SearchListData != null)
+        {
+            foreach (var product in SearchListData)
+            {
+
+                <div class="col my-4">
+                    <div class="card h-100">
+                        <a href="#">
+                            <img src="@product.Prod_Image_Path" class="card-img-top" alt="title" />
+                        </a>
+
+                        <div class="label-top">
+                            <label class="text-danger font-weight-bold" href="#">@product.Brand.Brand_Name</label>
+                        </div>
+                        <div class="card-body">
+                            <div>
+                                <p><b>Price</b> = &nbsp;&#8377;&nbsp;@product.Prod_Selling&nbsp;&nbsp;<strike class="text-danger">&#8377;&nbsp;@product.Prod_Price</strike></p>
+                            </div>
+                            <h3 class="card-title">
+                                @product.Prod_ShortName
+                            </h3>
+                            <div>
+                                @Html.ActionLink("View More", "ProductDetails", "Product", new { id = product.Prod_Id }, new { @class = "btn btn-warning" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            }
+
+
+        }
+
+
+    </div>
+
+</div>
+

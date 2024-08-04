@@ -1,0 +1,98 @@
+﻿@model ShoeWebCustomer.Models.LoginUser
+
+@{
+    ViewBag.Title = "UserLogin";
+}
+
+
+@using (Html.BeginForm("UserLogin", "Account", FormMethod.Post))
+{
+
+    @Html.AntiForgeryToken()
+
+    <div class="container" style="min-height: 450px; margin-top: 3%;">
+        <div class="row myrow">
+            <div class="col-md-6" style="background-color: #f7f8fa;">
+                <img src="~/Content/Imges/LoginImg.png" alt="Alternate Text" class="img-fluid img1" />
+                <br />
+                <div class="logRespo1">
+                    <p style="font-weight: 500; font-family: 'Lato', sans-serif;">Don't have Account ?</p>
+                   
+                    @Html.ActionLink("Sign up here", "UserRegistration", null, new { @class = "regisbtn" })
+                </div>
+            </div>
+            <div class="col-md-6 leftside">
+                <div>
+                    <center>
+                        <h1 id="myLogHead" style="color: #56B2BD; font-weight: bold; font-family: 'Lato', sans-serif; margin-top: 14px; margin-bottom: 12px;">Login Here</h1>
+                    </center>
+                </div>
+                <div style="width: 80%; margin: auto; margin-top: 50px;">
+
+                    <div class="form-group">
+
+                        @Html.LabelFor(model => model.U_Email, htmlAttributes: new { @class = "lbl" })
+                        @Html.EditorFor(model => model.U_Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.U_Email, "", new { @class = "text-danger" })
+
+                    </div>
+
+                    <div class="form-group">
+
+                        @Html.LabelFor(model => model.U_Password, htmlAttributes: new { @class = "lbl" })
+                        @Html.EditorFor(model => model.U_Password, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.U_Password, "", new { @class = "text-danger" })
+
+                    </div>
+
+
+                    <div class="form-group">
+                        <center>
+                            @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+                            {
+                                <h6 style="color:red;">@ViewBag.ErrorMessage</h6>
+                            }
+                        </center>
+                    </div>
+
+                    <div class="form-group">
+                        <a href="#" id="forgotPasswordLink">Forgot Password</a>
+                    </div>
+                    <div class="logRespo0">
+                        <input type="submit" id="Loginbtn" value="Login" class="Loginbtn" />
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+}
+
+
+<div class="modal fade" id="forgotPasswordModal" tabindex="-1" role="dialog" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="forgotPasswordModalLabel">Forgot Password</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="forgotPasswordForm">
+                    <div class="form-group">
+                        <label for="forgetemail">Enter Registered Email:</label>
+                        <input type="email" class="form-control" id="forgetemail" name="forgetemail" required>
+                    </div>
+                    <button type="submit" id="btnSbmt" class="btn btn-primary">Submit</button>
+                    <label id="responseMess"></label>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/ProductDataTransfer")
+}

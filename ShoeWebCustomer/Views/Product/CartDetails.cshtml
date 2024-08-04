@@ -1,0 +1,207 @@
+﻿@model IEnumerable<ShoeWebCustomer.Models.UserCart>
+
+
+<div>
+    <p class="font-weight-bold h3 text-center my-4">
+        My Cart
+    </p>
+</div>
+<div style="width:100%;overflow-x:auto;">
+    <table id="cartTable" class="table table-hover">
+        <thead>
+            <tr>
+                <th></th>
+                <th></th>
+                <th>Quantity</th>
+                <th>Product Name</th>
+                <th>Product Price</th>
+                <th>Image</th>
+                <th>Total</th>
+                <th></th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.HiddenFor(modelItem => item.Cartid)</td>
+                    <td>@Html.HiddenFor(modelItem => item.ProdId)</td>
+                    <td><input type="number" class="quantity" value="@item.Quantity" readonly /></td>
+                    <td>@item.Prod_ShortName</td>
+                    <td><label class="sellingPrice">@item.Prod_Selling</label></td>
+                    <td><img src="@item.Prod_Image_Path" alt="@item.Prod_ShortName" width="50" /></td>
+                    <td><label class="totalPrice">@item.TotalPrice</label></td>
+                    <td><i class="fa fa-trash" aria-hidden="true" style="color:red;" onclick="DelItem(this)"></i></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <center>
+        <div style="width:30%;">
+            <table class="table">
+                <tr>
+                    <td>
+                        <b>Total</b>
+                    </td>
+                    <td>
+                        <label id="Total"></label>
+                    </td>
+                    <td>
+                        <label id="empty">Cart Is Empty.</label>
+                        <input type="button" id="checkoutBtn" value="Checkout" class="btn btn-warning">
+                        <img src="~/Content/Imges/loader.gif" style="display:none;" id="myloader" width="18%" height="auto"/>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </center>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jquery")
+}
+
+<script>
+    $(document).ready(function () {
+        $(".quantity").click(function () {
+            $(this).removeAttr('readonly');
+           
+        });
+
+        $(".quantity").change(function () {
+            var quantity = parseInt($(this).val());
+            if (isNaN(quantity) || quantity <= 0) {
+                $(this).val($(this).data('prevvalue') || 1);
+                quantity = parseInt($(this).val());
+            }
+            var sellingPrice = parseFloat($(this).closest('tr').find('.sellingPrice').text());
+            var totalPrice = quantity * sellingPrice;
+            $(this).closest('tr').find('.totalPrice').text(totalPrice.toFixed(2));
+            calculateTotalAmount();
+        });
+
+        $(".quantity").focusout(function () {
+            var value = $(this).val();
+            if (value == "" || parseInt(value) <= 0) {
+                var initialValue = $(this).data('prevvalue') || 1;
+                $(this).val(initialValue);
+            }
+            $(this).attr('readonly', true);
+            calculateTotalAmount();
+        });
+
+       
+        $(".quantity").each(function () {
+            $(this).data('prevvalue', $(this).val());
+        });
+
+       
+        calculateTotalAmount();
+
+      
+        
+    });
+
+
+    function calculateTotalAmount() {
+        var totalAmount = 0;
+        var cartItemsCount = $('#cartTable tbody tr').length;
+
+        if (cartItemsCount > 0) {
+            $('.totalPrice').each(function () {
+                totalAmount += parseFloat($(this).text());
+            });
+            $('#Total').text(totalAmount.toFixed(2));
+
+            $('#empty').hide();
+            $('#checkoutBtn').show();
+        } else {
+            $('#empty').show();
+            $('#checkoutBtn').hide();
+            $('#Total').text('0');
+
+        }
+    }
+
+    function DelItem(element) {
+       
+
+        var cartId = $(element).closest('tr').find('input[type="hidden"][name$=".Cartid"]').val();
+
+        $.ajax({
+            url: "/Product/DeleteCartItem",
+            type: "POST",
+            data: JSON.stringify({ cartId: cartId }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                if (response.success) {
+                    $(element).closest('tr').remove(); // Remove the row directly
+                    calculateTotalAmount();
+                } else {
+                    alert(response.message);
+                }
+            },
+            error: function (response) {
+                alert("An error occurred while deleting the cart item.");
+            }
+        });
+        
+    }
+
+    $("#checkoutBtn").click(function () {
+
+        $('#myloader').show();
+        $('#checkoutBtn').hide();
+
+        var cartItems = [];
+
+        $("#cartTable tbody tr").each(function () {
+            var CartId = $(this).find("input[type=hidden]").eq(0).val(); 
+            var quantity = parseInt($(this).find(".quantity").val());
+            
+            var cartItem = {
+                Cartid: CartId,
+              
+                Quantity: quantity,
+                
+            };
+
+            cartItems.push(cartItem);
+        });
+
+        var UserCartUpdate = {
+            userCartUpdates: cartItems
+        };
+
+
+       
+        $.ajax({
+            url: "/Product/InsertCheckout",
+            type: "POST",
+            data: JSON.stringify(UserCartUpdate),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+
+                window.location.href = response.url;
+
+            },
+            error: function (response) {
+
+                alert("Checkout failed:", response);
+
+                $('#myloader').hide();
+                $('#checkoutBtn').show();
+            },
+           
+        });
+
+    });
+
+   
+
+</script>

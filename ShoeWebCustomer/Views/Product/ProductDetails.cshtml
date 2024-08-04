@@ -1,0 +1,105 @@
+﻿
+@{
+    ViewBag.Title = "ProductDetails";
+}
+
+@{
+    List<ShoeWebCustomer.Models.Products> ProdDetailData = null;
+    if (TempData["ProdDetaildata"] != null)
+    {
+        ProdDetailData = (List<ShoeWebCustomer.Models.Products>)TempData["ProdDetaildata"];
+    }
+}
+
+<div class="container">
+    <br />
+    @if (ProdDetailData != null)
+    {
+        foreach (var product in ProdDetailData)
+        {
+            @Html.HiddenFor(m => product.Prod_Id)
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="@product.Prod_Image_Path" alt="Product Image">
+                </div>
+                <div class="product-details">
+                    <table width="100%">
+                        <tr>
+                            <td>
+                                <h2><label class="product-name">Name</label></h2>
+                            </td>
+                            <td>
+                                <h2><label class="product-nameDetails">@product.Prod_ShortName</label></h2>
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td>
+                                <h2><label class="product-name">Price </label></h2>
+                            </td>
+                            <td>
+                                <h2><label class="product-nameDetails">&#8377;&nbsp;@product.Prod_Selling&nbsp;&nbsp;</label><strike class="text-danger" style="font-size: 20px;">&#8377;&nbsp;@product.Prod_Price</strike></h2>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <h2><label class="product-name">Size</label></h2>
+                            </td>
+                            <td>
+                                <h2><label class="product-nameDetails">@product.Size.Size_Number</label></h2>
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td>
+                                <h2><label class="product-name">Category </label></h2>
+                            </td>
+                            <td>
+                                <h2><label class="product-nameDetails">@product.Category.Category_Name</label></h2>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td width="25%">
+                                <h2><label class="product-name">Description </label></h2>
+                            </td>
+                            <td width="75%">
+                                <h2><label class="product-description">@product.Prod_Description</label></h2>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td width="25%">
+                                <h2><label class="product-name">Quantity </label></h2>
+                            </td>
+                            <td width="75%">
+                                <input type="number" id="txtqty" value="1" class="form-control" min="1" style="width:50%;" />
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td width="25%">
+                            </td>
+                            <td width="75%">
+                                <button class="btn btn-success" id ="cartbtn" onclick="btnCart()">Add to Cart</button>
+                                <img src="~/Content/Imges/loader.gif" style="display:none;" id="myloaderCart" width="15%" height="auto" />
+                            </td>
+                        </tr>
+                    </table>
+
+
+                </div>
+            </div>
+        }
+    }
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/ProductDataTransfer")
+}
+

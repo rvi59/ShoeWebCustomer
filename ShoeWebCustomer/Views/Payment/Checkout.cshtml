@@ -1,0 +1,147 @@
+﻿@model System.Data.DataTable
+
+
+<h2>Checkout</h2>
+
+<form id="checkout-form" method="post" action="/Payment/ConfirmPayment">
+    <div class="container">
+        <center>
+            <div class="chktbl">
+                <h3 class="chkh3">Checkout Details</h3>
+                <table class="table table-borderless">
+                    <tr>
+                        <td>
+                            <b>User Name</b>
+                        </td>
+                        <td>
+                            <label id="uName">@Model.Rows[0]["U_UserName"]</label>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <b>Email</b>
+                        </td>
+                        <td>
+                            <label id="email">@Model.Rows[0]["U_Email"]</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>Total Shopping Price</b>
+                        </td>
+                        <td>
+                            <label id="TotalAmt">@Model.Rows[0]["TotalShoppingPrice"]</label>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <b>Address</b>
+                        </td>
+                        <td>
+                            <textarea id="Address" rows="2" cols="20" class="form-control"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>Mobile No</b>
+                        </td>
+                        <td>
+                            <input type="number" id="mobile" class="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        </td>
+                        <td>
+                            <button type="button" onclick="validateAndSubmit()" class="btn btn-success">Pay Now</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </center>
+    </div>
+</form>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+    function validateAndSubmit() {
+        var Address = $('#Address').val();
+        var mobile = $('#mobile').val();
+        /*var amount = $('#TotalAmt').text();*/
+        var amount = parseInt($('#TotalAmt').text());
+        
+        const mobileRegex = /^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[6789]\d{9}$/;
+
+        if (Address == "") {
+            alert("Please Enter Address");
+            return false;
+        }
+
+        if (mobile == "") {
+            alert("Please Enter Mobile Number");
+            return false;
+        }
+
+        if (!mobileRegex.test(mobile)) {
+            alert("Please Enter a Valid Mobile Number");
+            return false;
+        }
+
+        var data = {
+            Address: Address,
+            mobile: mobile,
+            amount: amount
+        };
+
+        $.post("/Payment/ConfirmPayment", data, function (response) {
+            var options = {
+                "key": response.key,
+                "amount": response.amount,
+                "currency": "INR",
+                "name": "Your Company Name",
+                "description": "Test Transaction",
+                "order_id": response.order_id,
+                "handler": function (response) {
+                  
+                    // Sending data to server after successful payment
+                    $.post("/Payment/InsertUserBill", {
+                        payment_id: response.razorpay_payment_id,
+                        order_id: response.razorpay_order_id,
+                        Address: Address,
+                        mobile: mobile
+                    }, function (result) {
+                        if (result.url) {
+                           
+                            // You can redirect to another page or show a success message
+                            window.location.href = result.url;
+                        } else {
+                            alert("Failed to send payment confirmation to server.");
+                        }
+                    });
+
+                },
+                "prefill": {
+                    "name": $("#uName").text(),
+                    "email": $("#email").text(),
+                    "contact": mobile
+                },
+                "theme": {
+                    "color": "#3399cc"
+                }
+            };
+
+            var rzp1 = new Razorpay(options);
+            rzp1.open();
+        });
+    }
+</script>
+
+
+
+
+
+
+

@@ -1,0 +1,86 @@
+﻿@model ShoeWebCustomer.Models.Users
+
+@{
+    ViewBag.Title = "UserRegistration";
+}
+
+
+
+@using (Html.BeginForm("UserRegistration", "Account", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container" style="min-height: 600px; margin-top: 3%;">
+        <div class="row myrow">
+            <div class="col-md-6" style="background-color: #f7f8fa;">
+                <br />
+                <img src="~/Content/Imges/SignupImg.png" alt="Alternate Text" class="img-fluid" />
+                <br />
+                <div class="regRespo1">
+                    <p style="font-weight: 500; font-family: 'Lato', sans-serif;">Already have Account ?</p>
+                    @Html.ActionLink("Login here", "UserLogin", null, new { @class = "logbtn" })
+                </div>
+            </div>
+            <div class="col-md-6 leftside">
+                <div>
+                    <center>
+                        <h1 id="myRegis" style="color: #56B2BD; font-weight: bold; font-family: 'Lato', sans-serif; margin-top: 14px; margin-bottom: 12px;">Register Here</h1>
+                    </center>
+                </div>
+                <div style="width: 80%; margin: auto">
+
+                    <div class="form-group">
+
+                        @Html.LabelFor(model => model.U_UserName, htmlAttributes: new { @class = "lbl" })
+                        @Html.EditorFor(model => model.U_UserName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.U_UserName, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.U_Password, htmlAttributes: new { @class = "lbl" })
+                        @Html.EditorFor(model => model.U_Password, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.U_Password, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+
+                        @Html.LabelFor(model => model.U_ConfirmPassword, htmlAttributes: new { @class = "lbl" })
+                        @Html.EditorFor(model => model.U_ConfirmPassword, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.U_ConfirmPassword, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.U_Email, htmlAttributes: new { @class = "lbl" })
+                        @Html.EditorFor(model => model.U_Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.U_Email, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+
+                        @Html.LabelFor(model => model.U_FirstName, htmlAttributes: new { @class = "lbl" })
+                        @Html.EditorFor(model => model.U_FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.U_FirstName, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <center>
+                            @if (!string.IsNullOrEmpty(ViewBag.ExistMessage))
+                            {
+                                <h6 style="color:red;">@ViewBag.ExistMessage</h6>
+                            }
+                        </center>
+                    </div>
+
+                    <div class="regRespo0">
+                        @*<a href="Login.aspx" id="signbtn">Sign Up</a>*@
+                        <input type="submit" id="signbtn" value="Sign Up" class="btn btn-default" />
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
